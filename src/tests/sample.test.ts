@@ -1,4 +1,4 @@
-import sut from '@/sample.js';
+import sut from './sample.js';
 
 describe('Verify sample', () => {
   it('should return result', () => {

@@ -1,5 +1,4 @@
 const test = () => {
-  console.log('Working!');
   return 3;
 };
 
