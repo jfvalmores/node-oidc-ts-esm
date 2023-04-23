@@ -27,7 +27,7 @@ const validateScope = async (ctx) => {
       // Check if requested scope exists from the database source
       if (!allowList.has(scope)) {
         // If requested scope exists in the database source but does not exist from the client scope, throw error
-        throw new Unauthorized(`Requested scope is not allowed — ${scope}`);
+        throw new Unauthorized(`Requested scope is not allowed: '${scope}'`);
       }
     }
   }
