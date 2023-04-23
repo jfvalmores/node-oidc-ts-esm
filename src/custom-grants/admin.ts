@@ -1,3 +1,4 @@
+import validateScope from '@/helpers/validate-scope.js';
 import { BadRequest } from '@/types/errors.js';
 
 const GRANT_TYPE = 'urn:app:params:oauth:grant-type:admin';
@@ -11,14 +12,13 @@ const getTokenClaims = () => ({
 });
 
 const handler = async (ctx, next) => {
-  const { scope, account_id: accountId, app_id: appId } = ctx.oidc.params;
+  const { account_id: accountId, app_id: appId } = ctx.oidc.params;
   const { client } = ctx.oidc;
   const { AccessToken, Grant } = ctx.oidc.provider;
 
+  const scope = await validateScope(ctx);
+
   // Validate inputs
-  if (!scope) {
-    throw new BadRequest('Missing scope');
-  }
   if (!accountId) {
     throw new BadRequest('Missing account_id');
   }

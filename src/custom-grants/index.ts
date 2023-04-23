@@ -1,5 +1,5 @@
 import adminGrant from './admin.js';
 
-export default (provider) => {
+export default function loadGrants(provider) {
   adminGrant(provider);
-};
+}
