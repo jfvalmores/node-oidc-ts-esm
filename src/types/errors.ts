@@ -1,11 +1,23 @@
-export class BadRequest extends Error {
+export class BaseError extends Error {
   description: string;
   status: number;
 
-  constructor(message) {
-    super('Bad Request');
+  constructor(error, message, code) {
+    super(error);
     this.description = message;
-    this.status = 400;
+    this.status = code;
+  }
+}
+
+export class BadRequest extends BaseError {
+  constructor(message) {
+    super('Bad Request', message, 400);
+  }
+}
+
+export class Unauthorized extends BaseError {
+  constructor(message) {
+    super('Unauthorized', message, 401);
   }
 }
 
